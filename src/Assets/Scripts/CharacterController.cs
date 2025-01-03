@@ -11,6 +11,7 @@ public class CharacterController : MonoBehaviour
 	[SerializeField] private Transform m_GroundCheck;
 
 	const float k_GroundedRadius = .2f;
+	private Animator m_animator;
 	private bool m_IsGrounded;
 	private Rigidbody2D m_Rigidbody2D;
 	private bool m_IsFacingRight = true;
@@ -20,6 +21,7 @@ public class CharacterController : MonoBehaviour
 	private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
+		m_animator = GetComponent<Animator>();
 	}
 
 	private void FixedUpdate()
