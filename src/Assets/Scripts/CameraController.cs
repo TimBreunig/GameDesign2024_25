@@ -18,6 +18,6 @@ public class CameraController : MonoBehaviour
         _cameraPos = new Vector3(0f, _player.position.y + 1f, -10f);
         transform.position = Vector3.SmoothDamp(gameObject.transform.position, _cameraPos, ref _velocity, _dampTime);
 
-        _background.transform.position = new Vector3(-0.05f * _player.position.x, 0.95f * transform.position.y, 0f);
+        _background.transform.position = new Vector3(-0.05f * _player.position.x, 0.96f * transform.position.y + 1.25f, 1f);
     }
 }
