@@ -34,7 +34,6 @@ public class CharacterController : MonoBehaviour
 				m_IsGrounded = true;
 			}
 		}
-		Debug.Log(m_IsGrounded);
 	}
 
 
