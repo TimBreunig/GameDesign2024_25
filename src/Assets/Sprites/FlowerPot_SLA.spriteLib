@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e6fedc2472449cead18ef23b5cb30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library:
+  - m_Name: Default
+    m_Hash: 753088835
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Entry
+      m_Hash: 719368820
+      m_Sprite: {fileID: 1356084600, guid: 7e5539cb5597e0e46bb536557ce6f187, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1356084600, guid: 7e5539cb5597e0e46bb536557ce6f187, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 1
+  - m_Name: Breaking
+    m_Hash: 177154448
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: flower pot spritesheet_1
+      m_Hash: 305181383
+      m_Sprite: {fileID: -2124495674, guid: 7e5539cb5597e0e46bb536557ce6f187, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -2124495674, guid: 7e5539cb5597e0e46bb536557ce6f187, type: 3}
+    - m_Name: flower pot spritesheet_2
+      m_Hash: 188343165
+      m_Sprite: {fileID: -1548584674, guid: 7e5539cb5597e0e46bb536557ce6f187, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1548584674, guid: 7e5539cb5597e0e46bb536557ce6f187, type: 3}
+    - m_Name: flower pot spritesheet_3
+      m_Hash: 1010750443
+      m_Sprite: {fileID: -1309391950, guid: 7e5539cb5597e0e46bb536557ce6f187, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1309391950, guid: 7e5539cb5597e0e46bb536557ce6f187, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 3
+  m_PrimaryLibraryGUID: 
