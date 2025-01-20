@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,9 +20,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    [SerializeField] private GameObject _canvas;
-    [SerializeField] private GameObject _mainMenu;
-    [SerializeField] private GameObject _pauseMenu;
+    [SerializeField] private GameObject m_Canvas;
+    [SerializeField] private GameObject m_GameUI;
+    [SerializeField] private GameObject m_MainMenu;
+    [SerializeField] private GameObject m_PauseMenu;
+    [SerializeField] private TextMeshProUGUI m_TimerText;
+    [SerializeField] private float m_TimerLength = 120;
+    
+    private float m_TimeRemaining;
+    private bool m_TimerIsRunning = false;
 
 
     private void Awake()
@@ -32,7 +39,9 @@ public class GameManager : MonoBehaviour
             _instance = this;
 
         DontDestroyOnLoad(this);
-        DontDestroyOnLoad(_canvas);
+        DontDestroyOnLoad(m_Canvas);
+
+        m_TimeRemaining = m_TimerLength;
     }
 
     
@@ -40,10 +49,27 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (_pauseMenu != null && !_pauseMenu.activeSelf)
+            if (m_PauseMenu != null && !m_PauseMenu.activeSelf)
             {
                 Time.timeScale = 0;
-                _pauseMenu.SetActive(true);
+                m_TimerIsRunning = false;
+
+                m_PauseMenu.SetActive(true);
+            }
+        }
+
+        if (m_TimerIsRunning)
+        {
+            if (m_TimeRemaining > 0)
+            {
+                m_TimeRemaining -= Time.deltaTime;
+                m_TimerText.text = m_TimeRemaining.ToString("000");
+            }
+            else
+            {
+                Debug.Log("Time has run out!");
+                m_TimeRemaining = 0;
+                m_TimerIsRunning = false;
             }
         }
     }
@@ -55,12 +81,19 @@ public class GameManager : MonoBehaviour
 
         if(scene == 0)
         {
-            _pauseMenu.SetActive(false);
-            _mainMenu.SetActive(true);
+            m_GameUI.SetActive(false);
+            m_PauseMenu.SetActive(false);
+            m_MainMenu.SetActive(true);
+
+            m_TimerIsRunning = false;
         }
         else 
         {
-            _mainMenu.SetActive(false);
+            m_GameUI.SetActive(true);
+            m_MainMenu.SetActive(false);
+
+            m_TimeRemaining = m_TimerLength;
+            m_TimerIsRunning = true;
         }
     }
 
@@ -68,7 +101,9 @@ public class GameManager : MonoBehaviour
     public void Resume()
     {
         Time.timeScale = 1;
-        _pauseMenu.SetActive(false);
+        m_TimerIsRunning = true;
+
+        m_PauseMenu.SetActive(false);
     }
 
 
@@ -78,7 +113,7 @@ public class GameManager : MonoBehaviour
         LoadScene(scene);
 
         Time.timeScale = 1;
-        _pauseMenu.SetActive(false);
+        m_PauseMenu.SetActive(false);
     }
 
 

@@ -4,20 +4,19 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private GameObject _background;
-    [SerializeField] private Transform _player;
-    [SerializeField] private float _dampTime = 0.5f;
+    [SerializeField] private GameObject m_Background;
+    [SerializeField] private Transform m_Player;
+    [SerializeField] private float m_DampTime = 0.5f;
 
-    private Vector3 _cameraPos;
-    private Vector3 _backgroundPos;
-    private Vector3 _velocity = Vector3.zero;
+    private Vector3 m_CameraPos;
+    private Vector3 m_Velocity = Vector3.zero;
 
 
     private void Update()
     {
-        _cameraPos = new Vector3(0f, _player.position.y + 1f, -10f);
-        transform.position = Vector3.SmoothDamp(gameObject.transform.position, _cameraPos, ref _velocity, _dampTime);
+        m_CameraPos = new Vector3(0f, m_Player.position.y + 1f, -10f);
+        transform.position = Vector3.SmoothDamp(gameObject.transform.position, m_CameraPos, ref m_Velocity, m_DampTime);
 
-        _background.transform.position = new Vector3(-0.05f * _player.position.x, 0.96f * transform.position.y + 1.25f, 1f);
+        m_Background.transform.position = new Vector3(0, 0.96f * transform.position.y + 1.25f, 1f);
     }
 }
