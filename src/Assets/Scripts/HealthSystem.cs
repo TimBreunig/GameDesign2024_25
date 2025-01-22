@@ -22,23 +22,31 @@ public class HealthSystem : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-
-        m_CurrentHealthPoints = m_MaxHealthPoints;
     }
 
-    private void Update()
+    private void Start()
     {
-        Debug.Log(m_CurrentHealthPoints);
+        m_CurrentHealthPoints = m_MaxHealthPoints;
+        m_HeartIcons = GameObject.FindGameObjectsWithTag("Health");
+
+        foreach (GameObject obj in m_HeartIcons)
+        {
+            Debug.Log(obj.name);
+        }
     }
+
 
     public void TakeDamage()
     {
         int newHealthPoints = m_CurrentHealthPoints - 1;
         m_CurrentHealthPoints = newHealthPoints;
-
-        if(m_CurrentHealthPoints == 0)
+;
+        if(newHealthPoints <= 0)
         {
+            m_CurrentHealthPoints = 0;
             Debug.Log("Run out of health points.");
         }
+
+        m_HeartIcons[m_CurrentHealthPoints].SetActive(false);
     }
 }
