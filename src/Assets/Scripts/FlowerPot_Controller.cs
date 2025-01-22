@@ -5,6 +5,7 @@ using UnityEngine;
 public class FlowerPot_Controller : MonoBehaviour
 {
     [SerializeField] private int m_FallSpeed = 10;
+
     private Animator m_Animator;
 
 
@@ -24,6 +25,7 @@ public class FlowerPot_Controller : MonoBehaviour
     {
         if(collider.gameObject.tag == "Player")
         {
+            HealthSystem.Instance.TakeDamage();
             m_Animator.SetBool("isColliding", true);
         }
         else if(collider.gameObject.tag == "Border")

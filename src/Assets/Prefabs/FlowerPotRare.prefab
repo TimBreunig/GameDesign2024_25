@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 516710696882019012}
   - component: {fileID: 516710696882019015}
   m_Layer: 0
-  m_Name: FlowerPot
+  m_Name: FlowerPotRare
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -116,7 +116,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1356084600, guid: 7e5539cb5597e0e46bb536557ce6f187, type: 3}
+  m_Sprite: {fileID: -2124022288, guid: 26aadc13a83a6ea4c9df45fb22295367, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -159,7 +159,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c29cff538c195c249b69c6f2236de67b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Library: []
+  m_Library:
+  - m_Name: Default
+    m_Hash: 0
+    m_CategoryList:
+    - m_Name: Entry
+      m_Hash: 0
+      m_Sprite: {fileID: -2124022288, guid: 26aadc13a83a6ea4c9df45fb22295367, type: 3}
+  - m_Name: Breaking
+    m_Hash: 0
+    m_CategoryList:
+    - m_Name: flower pot spritesheet_1
+      m_Hash: 0
+      m_Sprite: {fileID: -809710256, guid: 26aadc13a83a6ea4c9df45fb22295367, type: 3}
+    - m_Name: flower pot spritesheet_2
+      m_Hash: 0
+      m_Sprite: {fileID: -765506964, guid: 26aadc13a83a6ea4c9df45fb22295367, type: 3}
+    - m_Name: flower pot spritesheet_3
+      m_Hash: 0
+      m_Sprite: {fileID: 1209607630, guid: 26aadc13a83a6ea4c9df45fb22295367, type: 3}
   m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 01ff1a972c8921a4a93a04472f366495, type: 3}
 --- !u!114 &516710696882019012
 MonoBehaviour:
@@ -189,4 +207,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 5023049310705686620, guid: 3bed7758abd3df8409ba8b6b1d76ac6d, type: 3}
-  m_FallSpeed: 9
+  m_FallSpeed: 10
