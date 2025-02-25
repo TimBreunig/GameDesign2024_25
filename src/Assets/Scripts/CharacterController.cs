@@ -10,7 +10,7 @@ public class CharacterController : MonoBehaviour
 	[SerializeField] private LayerMask m_GroundLayer;
 	[SerializeField] private Transform m_GroundCheck;
 
-	const float k_GroundedRadius = .2f;
+	const float k_GroundedRadius = .25f;
 	private Animator m_animator;
 	private bool m_IsGrounded;
 	private Rigidbody2D m_Rigidbody2D;
@@ -27,12 +27,18 @@ public class CharacterController : MonoBehaviour
 	private void FixedUpdate()
 	{
 		Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_GroundLayer);
+		
 		for (int i = 0; i < colliders.Length; i++)
 		{
 			if (colliders[i].gameObject != gameObject)
 			{
 				m_IsGrounded = true;
 			}
+		}
+		
+		if(colliders.Length == 0)
+		{
+			m_IsGrounded = false;
 		}
 	}
 
