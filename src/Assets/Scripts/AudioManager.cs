@@ -21,7 +21,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource m_AudioSourceMusic;
     [SerializeField] private AudioSource m_AudioSourceSFX;
     [SerializeField] private AudioClip[] audioClipArray;
-    [SerializeField] private float m_FadeDuration = 0.15f;
+    [SerializeField] private float m_FadeDuration = 0.5f;
 
 
     private void Awake()
@@ -39,7 +39,7 @@ public class AudioManager : MonoBehaviour
 
     public void ChangeMusic(int clipIndex)
     {
-        AudioClip newClip = audioClipArray[clipIndex];
+        AudioClip newClip = audioClipArray[clipIndex - 1];
         StartCoroutine(CrossfadeCoroutine(newClip));
     }
 

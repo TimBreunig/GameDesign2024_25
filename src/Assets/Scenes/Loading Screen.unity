@@ -1187,7 +1187,8 @@ MonoBehaviour:
   audioClipArray:
   - {fileID: 8300000, guid: a485b4a499b50e04881e42384568cf1f, type: 3}
   - {fileID: 8300000, guid: 6dbe43469042ee0478fe0d1b9ddb807b, type: 3}
-  m_FadeDuration: 1
+  - {fileID: 8300000, guid: f73f1b4f6ba12124b81f0a0c50185b67, type: 3}
+  m_FadeDuration: 0.5
 --- !u!4 &881430394
 Transform:
   m_ObjectHideFlags: 0

@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
     public void LoadScene(int scene)
     {
         StartCoroutine(LoadAsyncScene(scene));
-        AudioManager.Instance.ChangeMusic(scene - 1);
+        AudioManager.Instance.ChangeMusic(scene);
 
         if(scene <= 1)
         {
