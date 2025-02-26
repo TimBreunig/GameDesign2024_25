@@ -20,7 +20,7 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] private AudioSource m_AudioSourceMusic;
     [SerializeField] private AudioSource m_AudioSourceSFX;
-    [SerializeField] private AudioClip[] audioClipArray;
+    [SerializeField] private AudioClip[] musicArray;
     [SerializeField] private float m_FadeDuration = 0.5f;
 
 
@@ -37,9 +37,15 @@ public class AudioManager : MonoBehaviour
     }
 
 
+    public void PlaySFX(AudioClip audioClip)
+    {
+        m_AudioSourceSFX.PlayOneShot(audioClip);
+    }
+
+
     public void ChangeMusic(int clipIndex)
     {
-        AudioClip newClip = audioClipArray[clipIndex - 1];
+        AudioClip newClip = musicArray[clipIndex - 1];
         StartCoroutine(CrossfadeCoroutine(newClip));
     }
 
@@ -47,12 +53,12 @@ public class AudioManager : MonoBehaviour
     private IEnumerator CrossfadeCoroutine(AudioClip newClip)
     {
         float startVolume = m_AudioSourceMusic.volume;
-        float timeElapsed = 0f;
+        float elapsedTime = 0f;
 
-        while (timeElapsed < m_FadeDuration)
+        while (elapsedTime < m_FadeDuration)
         {
-            m_AudioSourceMusic.volume = Mathf.Lerp(startVolume, 0f, timeElapsed / m_FadeDuration);
-            timeElapsed += Time.deltaTime;
+            m_AudioSourceMusic.volume = Mathf.Lerp(startVolume, 0f, elapsedTime / m_FadeDuration);
+            elapsedTime += Time.deltaTime;
             yield return null;
         }
 
@@ -61,12 +67,12 @@ public class AudioManager : MonoBehaviour
 
         m_AudioSourceMusic.clip = newClip;
         m_AudioSourceMusic.Play();
-        timeElapsed = 0f;
+        elapsedTime = 0f;
 
-        while (timeElapsed < m_FadeDuration)
+        while (elapsedTime < m_FadeDuration)
         {
-            m_AudioSourceMusic.volume = Mathf.Lerp(0f, startVolume, timeElapsed / m_FadeDuration);
-            timeElapsed += Time.deltaTime;
+            m_AudioSourceMusic.volume = Mathf.Lerp(0f, startVolume, elapsedTime / m_FadeDuration);
+            elapsedTime += Time.deltaTime;
             yield return null;
         }
 
