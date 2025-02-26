@@ -10,7 +10,7 @@ public class CharacterController : MonoBehaviour
 	[SerializeField] private LayerMask m_GroundLayer;
 	[SerializeField] private Transform m_GroundCheck;
 
-	const float k_GroundedRadius = .25f;
+	const float k_GroundedRadius = .48f;
 	private Animator m_animator;
 	private bool m_IsGrounded;
 	private Rigidbody2D m_Rigidbody2D;

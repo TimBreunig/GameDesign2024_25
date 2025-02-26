@@ -44,6 +44,11 @@ public class GameManager : MonoBehaviour
         m_TimeRemaining = m_TimerLength;
     }
 
+    private void Start()
+    {
+        LoadScene(1);
+    }
+
     
     private void Update()
     {
@@ -78,8 +83,9 @@ public class GameManager : MonoBehaviour
     public void LoadScene(int scene)
     {
         StartCoroutine(LoadAsyncScene(scene));
+        AudioManager.Instance.ChangeMusic(scene - 1);
 
-        if(scene == 0)
+        if(scene <= 1)
         {
             m_GameUI.SetActive(false);
             m_PauseMenu.SetActive(false);
@@ -87,7 +93,7 @@ public class GameManager : MonoBehaviour
 
             m_TimerIsRunning = false;
         }
-        else 
+        else
         {
             m_GameUI.SetActive(true);
             m_MainMenu.SetActive(false);
