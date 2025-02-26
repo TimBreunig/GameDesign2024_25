@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
+	[SerializeField] private AudioClip m_JumpSound;
 	[SerializeField] private float m_JumpForce = 550f;
 	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .1f;
 	[SerializeField] private bool m_AirControl = false;
@@ -72,6 +73,8 @@ public class CharacterController : MonoBehaviour
 		{
 			m_IsGrounded = false;
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+
+			AudioManager.Instance.PlaySFX(m_JumpSound);
 
 			m_animator.SetBool("isJumping", true);
 		}

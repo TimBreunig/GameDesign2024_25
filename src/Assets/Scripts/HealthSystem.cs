@@ -27,12 +27,6 @@ public class HealthSystem : MonoBehaviour
     private void Start()
     {
         m_CurrentHealthPoints = m_MaxHealthPoints;
-        m_HeartIcons = GameObject.FindGameObjectsWithTag("Health");
-
-        foreach (GameObject obj in m_HeartIcons)
-        {
-            Debug.Log(obj.name);
-        }
     }
 
 
@@ -40,13 +34,15 @@ public class HealthSystem : MonoBehaviour
     {
         int newHealthPoints = m_CurrentHealthPoints - 1;
         m_CurrentHealthPoints = newHealthPoints;
-;
+
+        m_HeartIcons[m_CurrentHealthPoints].SetActive(false);
+
         if(newHealthPoints <= 0)
         {
             m_CurrentHealthPoints = 0;
             Debug.Log("Run out of health points.");
+            GameManager.Instance.FailedLevel();
+            this.enabled = false;
         }
-
-        m_HeartIcons[m_CurrentHealthPoints].SetActive(false);
     }
 }

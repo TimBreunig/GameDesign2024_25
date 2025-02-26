@@ -206,5 +206,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cc032e4d29325d4082f0c3183cc7734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 5023049310705686620, guid: 3bed7758abd3df8409ba8b6b1d76ac6d, type: 3}
+  m_PotBreakSound: {fileID: 8300000, guid: 288bd61cc9cc7db4eb9e5b2efcab4555, type: 3}
   m_FallSpeed: 10
