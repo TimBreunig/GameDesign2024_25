@@ -26,7 +26,7 @@ public class HealthSystem : MonoBehaviour
 
     private void Start()
     {
-        m_CurrentHealthPoints = m_MaxHealthPoints;
+        ResetHealth();
     }
 
 
@@ -44,5 +44,10 @@ public class HealthSystem : MonoBehaviour
             GameManager.Instance.FailedLevel();
             this.enabled = false;
         }
+    }
+
+    public void ResetHealth()
+    {
+        m_CurrentHealthPoints = m_MaxHealthPoints;
     }
 }

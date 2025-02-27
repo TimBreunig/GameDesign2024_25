@@ -117,6 +117,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            HealthSystem.Instance.ResetHealth();
+
             m_GameUI.SetActive(true);
             m_MainMenu.SetActive(false);
             m_LevelMenu.SetActive(false);
