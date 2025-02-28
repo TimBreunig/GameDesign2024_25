@@ -46,6 +46,15 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
+    public void RestoreHealth()
+    {
+        if(m_CurrentHealthPoints < m_MaxHealthPoints)
+        {
+            m_HeartIcons[m_CurrentHealthPoints].SetActive(true);
+            m_CurrentHealthPoints++;
+        }
+    }
+
     public void ResetHealth()
     {
         m_CurrentHealthPoints = m_MaxHealthPoints;
