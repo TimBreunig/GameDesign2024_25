@@ -5,6 +5,7 @@ using UnityEngine;
 public class HealthSystem : MonoBehaviour
 {
     [SerializeField] private int m_MaxHealthPoints = 5;
+    [SerializeField] private AudioClip m_CollectSound;
     [SerializeField] private GameObject[] m_HeartIcons;
     
     private int m_CurrentHealthPoints;
@@ -37,20 +38,22 @@ public class HealthSystem : MonoBehaviour
 
         m_HeartIcons[m_CurrentHealthPoints].SetActive(false);
 
-        if(newHealthPoints <= 0)
+        if(newHealthPoints == 0)
         {
-            m_CurrentHealthPoints = 0;
-            Debug.Log("Run out of health points.");
             GameManager.Instance.FailedLevel();
             this.enabled = false;
         }
     }
 
-    public void RestoreHealth()
+    public void RestoreHealth(Collider2D collider2D)
     {
         if(m_CurrentHealthPoints < m_MaxHealthPoints)
         {
+            Destroy(collider2D.gameObject);
+
+            AudioManager.Instance.PlaySFX(m_CollectSound);
             m_HeartIcons[m_CurrentHealthPoints].SetActive(true);
+            
             m_CurrentHealthPoints++;
         }
     }

@@ -12,8 +12,7 @@ public class CollisionController : MonoBehaviour
         }
         else if (collider2D.CompareTag("Collectable"))
         {
-            HealthSystem.Instance.RestoreHealth();
-            Destroy(collider2D.gameObject);
+            HealthSystem.Instance.RestoreHealth(collider2D);
         }
     }
 }
