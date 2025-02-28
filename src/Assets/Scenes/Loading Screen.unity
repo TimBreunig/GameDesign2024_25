@@ -210,6 +210,7 @@ GameObject:
   - component: {fileID: 112651168}
   - component: {fileID: 112651170}
   - component: {fileID: 112651169}
+  - component: {fileID: 112651171}
   m_Layer: 5
   m_Name: PassedMenu
   m_TagString: Untagged
@@ -233,7 +234,7 @@ RectTransform:
   - {fileID: 1852401317}
   - {fileID: 1955866676}
   m_Father: {fileID: 1302138986}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -278,6 +279,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 112651167}
   m_CullTransparentMesh: 1
+--- !u!225 &112651171
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112651167}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &288105769
 GameObject:
   m_ObjectHideFlags: 0
@@ -790,7 +803,7 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1302138986}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -869,7 +882,7 @@ RectTransform:
   - {fileID: 1149216513}
   - {fileID: 2048837972}
   m_Father: {fileID: 1302138986}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -960,7 +973,7 @@ RectTransform:
   - {fileID: 477746211}
   - {fileID: 1562282292}
   m_Father: {fileID: 1302138986}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1931,7 +1944,7 @@ RectTransform:
   - {fileID: 482648378}
   - {fileID: 2030566720}
   m_Father: {fileID: 1302138986}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2393,8 +2406,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52f7d2ba73e6db342b734de7632dd970, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AudioSourceMusic: {fileID: 819989110}
-  m_AudioSourceSFX: {fileID: 1896982604}
+  audioSourceMusic: {fileID: 819989110}
+  audioSourceSFX: {fileID: 1896982604}
   musicArray:
   - {fileID: 8300000, guid: a485b4a499b50e04881e42384568cf1f, type: 3}
   - {fileID: 8300000, guid: 6dbe43469042ee0478fe0d1b9ddb807b, type: 3}
@@ -2450,7 +2463,7 @@ RectTransform:
   - {fileID: 1605336572}
   - {fileID: 606812366}
   m_Father: {fileID: 1302138986}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2983,7 +2996,7 @@ RectTransform:
   - {fileID: 717932058}
   - {fileID: 760508902}
   m_Father: {fileID: 1302138986}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3135,6 +3148,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1624332844}
   - {fileID: 1246634096}
   - {fileID: 1142663761}
   - {fileID: 685282141}
@@ -3900,6 +3914,78 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1605336571}
   m_CullTransparentMesh: 1
+--- !u!1 &1624332843
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1624332844}
+  - component: {fileID: 1624332845}
+  m_Layer: 5
+  m_Name: Video Player Cutscene
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1624332844
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1624332843}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1302138986}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.000015259, y: 0.00064087}
+  m_SizeDelta: {x: 800, y: 374.04}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!328 &1624332845
+VideoPlayer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1624332843}
+  m_Enabled: 1
+  m_VideoClip: {fileID: 32900000, guid: 33ea97720a70e444a9548a0c8b0f5440, type: 3}
+  m_TargetCameraAlpha: 1
+  m_TargetCamera3DLayout: 0
+  m_TargetCamera: {fileID: 0}
+  m_TargetTexture: {fileID: 0}
+  m_TimeReference: 0
+  m_TargetMaterialRenderer: {fileID: 0}
+  m_TargetMaterialProperty: <noninit>
+  m_RenderMode: 1
+  m_AspectRatio: 2
+  m_DataSource: 0
+  m_PlaybackSpeed: 1
+  m_AudioOutputMode: 2
+  m_TargetAudioSources:
+  - {fileID: 0}
+  m_DirectAudioVolumes:
+  - 1
+  m_Url: 
+  m_EnabledAudioTracks: 01
+  m_DirectAudioMutes: 00
+  m_ControlledAudioTrackCount: 1
+  m_PlayOnAwake: 0
+  m_SkipOnDrop: 1
+  m_Looping: 0
+  m_WaitForFirstFrame: 1
+  m_FrameReadyEventEnabled: 0
+  m_VideoShaders: []
 --- !u!1 &1627343956
 GameObject:
   m_ObjectHideFlags: 0
@@ -4603,6 +4689,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 360cf630a4dd21b43a3a7d564e9c0b81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneTracker: {fileID: 11400000, guid: 50e1ab40d68de59489218611b83e0376, type: 2}
   m_ButtonSound: {fileID: 8300000, guid: 7fc419411b920c44ca718a0e00a3b8b0, type: 3}
   m_GameOverSound: {fileID: 8300000, guid: 21905d2a1aa383f4fa4869bdc0bc8701, type: 3}
   buttons:
@@ -4628,7 +4715,9 @@ MonoBehaviour:
   m_FailedMenu: {fileID: 409031821}
   m_PassedMenu: {fileID: 112651167}
   m_PoliceBadge: {fileID: 383625778}
-  m_CanvasGroup: {fileID: 409031825}
+  m_VideoPlayer: {fileID: 1624332845}
+  m_CanvasGroupFailed: {fileID: 409031825}
+  m_CanvasGroupPassed: {fileID: 112651171}
   m_TimerText: {fileID: 717932056}
   m_TimerLength: 120
   m_FadeDuration: 1

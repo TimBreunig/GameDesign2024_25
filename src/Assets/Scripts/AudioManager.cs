@@ -18,8 +18,9 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    [SerializeField] private AudioSource m_AudioSourceMusic;
-    [SerializeField] private AudioSource m_AudioSourceSFX;
+    public AudioSource audioSourceMusic;
+    public AudioSource audioSourceSFX;
+
     [SerializeField] private AudioClip[] musicArray;
     [SerializeField] private float m_FadeDuration = 0.5f;
 
@@ -32,14 +33,14 @@ public class AudioManager : MonoBehaviour
             _instance = this;
 
         DontDestroyOnLoad(this);
-        DontDestroyOnLoad(m_AudioSourceMusic);
-        DontDestroyOnLoad(m_AudioSourceSFX);
+        DontDestroyOnLoad(audioSourceMusic);
+        DontDestroyOnLoad(audioSourceSFX);
     }
 
 
     public void PlaySFX(AudioClip audioClip)
     {
-        m_AudioSourceSFX.PlayOneShot(audioClip);
+        audioSourceSFX.PlayOneShot(audioClip);
     }
 
 
@@ -48,34 +49,80 @@ public class AudioManager : MonoBehaviour
         AudioClip newClip = musicArray[clipIndex - 1];
         StartCoroutine(CrossfadeCoroutine(newClip));
     }
+    
 
-
-    private IEnumerator CrossfadeCoroutine(AudioClip newClip)
+    public void MuteMusic()
     {
-        float startVolume = m_AudioSourceMusic.volume;
+        StartCoroutine(FadeOutCoroutine());
+    }
+
+
+    public void UnmuteMusic()
+    {
+        StartCoroutine(FadeInCoroutine());
+    }
+
+
+    private IEnumerator FadeOutCoroutine()
+    {
+        float startVolume = audioSourceMusic.volume;
         float elapsedTime = 0f;
 
         while (elapsedTime < m_FadeDuration)
         {
-            m_AudioSourceMusic.volume = Mathf.Lerp(startVolume, 0f, elapsedTime / m_FadeDuration);
+            audioSourceMusic.volume = Mathf.Lerp(startVolume, 0f, elapsedTime / m_FadeDuration);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        m_AudioSourceMusic.volume = 0f;
-        m_AudioSourceMusic.Stop();
+        audioSourceMusic.volume = 0f;
+        audioSourceMusic.Stop();
+    }
 
-        m_AudioSourceMusic.clip = newClip;
-        m_AudioSourceMusic.Play();
+
+    private IEnumerator FadeInCoroutine()
+    {
+        audioSourceMusic.Play();
+        float endVolume = 1f;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < m_FadeDuration)
+        {
+            audioSourceMusic.volume = Mathf.Lerp(0f, endVolume, elapsedTime / m_FadeDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        audioSourceMusic.volume = endVolume;
+    }
+
+
+    private IEnumerator CrossfadeCoroutine(AudioClip newClip)
+    {
+        float startVolume = audioSourceMusic.volume;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < m_FadeDuration)
+        {
+            audioSourceMusic.volume = Mathf.Lerp(startVolume, 0f, elapsedTime / m_FadeDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        audioSourceMusic.volume = 0f;
+        audioSourceMusic.Stop();
+
+        audioSourceMusic.clip = newClip;
+        audioSourceMusic.Play();
         elapsedTime = 0f;
 
         while (elapsedTime < m_FadeDuration)
         {
-            m_AudioSourceMusic.volume = Mathf.Lerp(0f, startVolume, elapsedTime / m_FadeDuration);
+            audioSourceMusic.volume = Mathf.Lerp(0f, startVolume, elapsedTime / m_FadeDuration);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        m_AudioSourceMusic.volume = startVolume;
+        audioSourceMusic.volume = startVolume;
     }
 }

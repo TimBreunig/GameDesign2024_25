@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Video;
 using UnityEngine.SceneManagement;
 using TMPro;
 
@@ -21,6 +22,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public SceneTracker sceneTracker;
+
     [SerializeField] private AudioClip m_ButtonSound;
     [SerializeField] private AudioClip m_GameOverSound;
     [SerializeField] private Button[] buttons;
@@ -32,13 +35,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject m_FailedMenu;
     [SerializeField] private GameObject m_PassedMenu;
     [SerializeField] private GameObject m_PoliceBadge;
-    [SerializeField] private CanvasGroup m_CanvasGroup;
+    [SerializeField] private VideoPlayer m_VideoPlayer;
+    [SerializeField] private CanvasGroup m_CanvasGroupFailed;
+    [SerializeField] private CanvasGroup m_CanvasGroupPassed;
     [SerializeField] private TextMeshProUGUI m_TimerText;
     [SerializeField] private float m_TimerLength = 120f;
     [SerializeField] private float m_FadeDuration = 1f;
     
     private float m_TimeRemaining;
     private bool m_TimerIsRunning = false;
+    private bool m_IsInputEnabled = false;
     private int currentSceneIndex = 0;
 
 
@@ -58,6 +64,7 @@ public class GameManager : MonoBehaviour
         }
 
         m_TimeRemaining = m_TimerLength;
+        m_VideoPlayer.loopPointReached += OnCutsceneEnd;
         
         LoadScene(1);
     }
@@ -65,7 +72,7 @@ public class GameManager : MonoBehaviour
     
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && currentSceneIndex >= 2)
+        if (Input.GetKeyDown(KeyCode.Escape) && currentSceneIndex >= 2 && m_IsInputEnabled)
         {
             if (m_PauseMenu != null && !m_PauseMenu.activeSelf)
             {
@@ -104,6 +111,10 @@ public class GameManager : MonoBehaviour
         currentSceneIndex = scene;
         Time.timeScale = 1;
 
+        m_PassedMenu.SetActive(false);
+        m_FailedMenu.SetActive(false);
+        m_PoliceBadge.SetActive(false);
+
         StartCoroutine(LoadAsyncScene(scene));
         AudioManager.Instance.ChangeMusic(scene);
 
@@ -113,6 +124,17 @@ public class GameManager : MonoBehaviour
             m_PauseMenu.SetActive(false);
             m_MainMenu.SetActive(true);
 
+            m_TimerIsRunning = false;        
+        }
+        else if(scene == 2)
+        {
+            HealthSystem.Instance.ResetHealth();
+
+            m_GameUI.SetActive(false);
+            m_MainMenu.SetActive(false);
+            m_LevelMenu.SetActive(false);
+
+            m_TimeRemaining = m_TimerLength;
             m_TimerIsRunning = false;
         }
         else
@@ -125,14 +147,37 @@ public class GameManager : MonoBehaviour
 
             m_TimeRemaining = m_TimerLength;
             m_TimerIsRunning = true;
-        }
 
-        m_FailedMenu.SetActive(false);
-        m_PoliceBadge.SetActive(false);
+            m_IsInputEnabled = true;
+        }
     }
 
 
+    private void OnCutsceneEnd(VideoPlayer vp)
+    {
+        m_GameUI.SetActive(true);
+        m_TimerIsRunning = true;
+
+        GameObject[] spawners = GameObject.FindGameObjectsWithTag("Spawner");
+        foreach(GameObject spawner in spawners)
+        {
+            spawner.GetComponent<Spawner>().enabled = true;
+        }
+
+        vp.gameObject.SetActive(false);
+        AudioManager.Instance.UnmuteMusic();
+
+        m_IsInputEnabled = true;
+    }
     
+
+    public void OnFinishEnter()
+    {
+        m_PassedMenu.SetActive(true);
+        StartCoroutine(FadeIn(m_CanvasGroupPassed));
+    }
+
+
     public void FailedLevel()
     {
         m_PoliceBadge.SetActive(true);
@@ -190,6 +235,32 @@ public class GameManager : MonoBehaviour
         {
             yield return null;
         }
+
+        if(scene == 2)
+        {
+            if(!sceneTracker.hasSceneBeenPlayed)
+            {
+                sceneTracker.hasSceneBeenPlayed = true;
+            
+                AudioManager.Instance.MuteMusic();
+
+                m_VideoPlayer.targetCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+                m_VideoPlayer.Play();
+            }
+            else
+            {
+                m_GameUI.SetActive(true);
+                m_TimerIsRunning = true;
+
+                GameObject[] spawners = GameObject.FindGameObjectsWithTag("Spawner");
+                foreach(GameObject spawner in spawners)
+                {
+                    spawner.GetComponent<Spawner>().enabled = true;
+                }
+
+                m_IsInputEnabled = true;
+            }
+        }
     }
 
 
@@ -209,7 +280,7 @@ public class GameManager : MonoBehaviour
 
             yield return null;
         }
-        yield return StartCoroutine(FadeIn(m_CanvasGroup));
+        yield return StartCoroutine(FadeIn(m_CanvasGroupFailed));
     }
 
     
@@ -223,9 +294,10 @@ public class GameManager : MonoBehaviour
             canvasGroup.alpha = Mathf.Lerp(0f, 1f, elapsedTime / m_FadeDuration);
             yield return null;
         }
-
+        
         m_GameUI.SetActive(false);
 
         m_TimerIsRunning = false;
+        Time.timeScale = 0;
     }
 }
