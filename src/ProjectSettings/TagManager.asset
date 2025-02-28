@@ -7,6 +7,7 @@ TagManager:
   - Border
   - Health
   - Spawner
+  - Collectable
   layers:
   - Default
   - TransparentFX
