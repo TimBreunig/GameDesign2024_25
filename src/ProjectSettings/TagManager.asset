@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Border
   - Health
+  - Spawner
   layers:
   - Default
   - TransparentFX

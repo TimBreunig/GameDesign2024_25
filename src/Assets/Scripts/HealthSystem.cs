@@ -49,5 +49,9 @@ public class HealthSystem : MonoBehaviour
     public void ResetHealth()
     {
         m_CurrentHealthPoints = m_MaxHealthPoints;
+        foreach(GameObject icon in m_HeartIcons)
+        {
+            icon.SetActive(true);
+        }
     }
 }
