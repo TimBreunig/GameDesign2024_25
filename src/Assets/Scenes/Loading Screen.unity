@@ -2194,7 +2194,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.65
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2941,6 +2941,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_MaxHealthPoints: 5
+  m_CollectSound: {fileID: 8300000, guid: 3c3424e1944ca9e4eb192b446926976f, type: 3}
   m_HeartIcons:
   - {fileID: 1304603727}
   - {fileID: 1431354193}
@@ -4691,7 +4692,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneTracker: {fileID: 11400000, guid: 50e1ab40d68de59489218611b83e0376, type: 2}
   m_ButtonSound: {fileID: 8300000, guid: 7fc419411b920c44ca718a0e00a3b8b0, type: 3}
-  m_GameOverSound: {fileID: 8300000, guid: 21905d2a1aa383f4fa4869bdc0bc8701, type: 3}
+  m_GameOverSound: {fileID: 8300000, guid: 81d73085fd7ff5d499055fbba8df1260, type: 3}
   buttons:
   - {fileID: 2147099875}
   - {fileID: 1605336573}

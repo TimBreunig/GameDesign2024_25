@@ -4801,7 +4801,7 @@ MonoBehaviour:
   m_FlowerPot: {fileID: 516710696882019023, guid: cda2065169592ed46a97076a3bdafb76, type: 3}
   m_spawnValueX: 7
   m_spawnValueY: 60
-  m_TimeMin: 0.75
+  m_TimeMin: 1
   m_TimeMax: 1.5
 --- !u!1 &850229453
 GameObject:

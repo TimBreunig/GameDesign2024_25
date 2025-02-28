@@ -269,6 +269,9 @@ public class GameManager : MonoBehaviour
         float elapsedTime = 0f;
         float animationDuration = 0.75f * m_FadeDuration;
 
+        m_GameUI.SetActive(false);
+        m_TimerIsRunning = false;
+
         AudioManager.Instance.PlaySFX(m_GameOverSound);
 
         while (elapsedTime < animationDuration)
@@ -294,10 +297,6 @@ public class GameManager : MonoBehaviour
             canvasGroup.alpha = Mathf.Lerp(0f, 1f, elapsedTime / m_FadeDuration);
             yield return null;
         }
-        
-        m_GameUI.SetActive(false);
-
-        m_TimerIsRunning = false;
         Time.timeScale = 0;
     }
 }
