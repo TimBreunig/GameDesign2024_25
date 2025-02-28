@@ -92,9 +92,10 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("Time has run out!");
                 m_TimeRemaining = 0;
                 m_TimerIsRunning = false;
+
+                FailedLevel();
             }
         }
     }
